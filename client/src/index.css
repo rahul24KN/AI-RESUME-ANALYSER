@@ -1,0 +1,361 @@
+@import "tailwindcss";
+
+@theme {
+  /* Slate colors mapped to Pulsenova dark slate scale */
+  --color-slate-50: #fbf9f6;
+  --color-slate-100: #f6ede0;
+  --color-slate-150: rgba(242, 233, 219, 0.06);
+  --color-slate-200: rgba(242, 233, 219, 0.08); /* warm border */
+  --color-slate-250: #1c2732;
+  --color-slate-300: #cb9c74;
+  --color-slate-400: #A59C94;     /* Muted warm gray */
+  --color-slate-450: #8c8279;
+  --color-slate-500: #8c8279;
+  --color-slate-550: #6e6259;
+  --color-slate-600: #6e6259;
+  --color-slate-650: #CBC4BC;
+  --color-slate-700: #F2E9DB;     /* Linen */
+  --color-slate-750: rgba(242, 233, 219, 0.15);
+  --color-slate-800: rgba(242, 233, 219, 0.08); /* warm border */
+  --color-slate-850: rgba(242, 233, 219, 0.06);
+  --color-slate-900: #15202b;     /* Card bg */
+  --color-slate-950: #101820;     /* Main bg */
+
+  /* White and black mappings */
+  --color-white: #F2E9DB;
+  --color-black: #101820;
+
+  /* Cyan and Blue mappings (re-routed to Pulsenova warm ivory and oxblood red) */
+  --color-cyan-400: #F2E9DB; /* Ivory */
+  --color-cyan-500: #643335; /* Oxblood red */
+  --color-cyan-600: #552a2b;
+  --color-blue-500: #8B3A3C;
+  --color-blue-600: #782e30; /* Darker oxblood */
+
+  /* Primary color mappings */
+  --color-primary-50: #fbf9f6;
+  --color-primary-100: #f6ede0;
+  --color-primary-200: #eddac3;
+  --color-primary-300: #ddbf9d;
+  --color-primary-400: #cb9c74;
+  --color-primary-500: #643335; /* Pulsenova Oxblood Red */
+  --color-primary-600: #552a2b;
+  --color-primary-700: #462223;
+  --color-primary-800: #381a1b;
+  --color-primary-900: #291213;
+  --color-primary-950: #1b0a0a;
+
+  /* Cyber Cyan color mappings */
+  --color-cyber-cyan: #cbc4bc;
+  --color-cyber-cyan-glow: #d6d2c4;
+}
+
+/* Base custom styles */
+@layer base {
+  body {
+    @apply transition-colors duration-300 antialiased overflow-x-hidden text-[#F2E9DB];
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #101820;
+    /* Subtle warm ambient glows */
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(100, 51, 53, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(242, 233, 219, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  /* Set editorial headlines font to Space Grotesk */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+
+  /* Webkit scrollbar customization */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #101820;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(242, 233, 219, 0.15);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(242, 233, 219, 0.3);
+  }
+
+  html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Global class overrides for hardcoded layout colors */
+.bg-\[\#0B0D12\] {
+  background: #101820 !important;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(100, 51, 53, 0.12) 0%, transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(242, 233, 219, 0.05) 0%, transparent 35%) !important;
+  background-attachment: fixed !important;
+}
+
+.bg-\[\#11141C\] {
+  background: #15202b !important; /* Solid dark warm slate card */
+  border: 1px solid rgba(242, 233, 219, 0.08) !important;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.2) !important;
+  border-radius: 24px !important; /* Editorial roundings are a bit tighter */
+  transition: all 0.5s cubic-bezier(0.65, 0.05, 0, 1) !important;
+}
+
+.bg-\[\#11141C\]:hover {
+  border-color: rgba(242, 233, 219, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+/* Override borders */
+.border-white\/5 {
+  border-color: rgba(242, 233, 219, 0.08) !important;
+}
+
+.border-white\/10 {
+  border-color: rgba(242, 233, 219, 0.15) !important;
+}
+
+/* Override text colors to match the warm linen theme */
+.text-gray-400 {
+  color: #A59C94 !important;
+}
+
+.text-sky-300 {
+  color: #CBC4BC !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+}
+
+.text-white {
+  color: #F2E9DB !important;
+}
+
+/* Green labels for success stats */
+.text-green-300 {
+  color: #A3B899 !important;
+}
+
+.bg-green-500\/10 {
+  background-color: rgba(163, 184, 153, 0.1) !important;
+}
+
+/* Red labels for missing stats */
+.text-red-300 {
+  color: #C08A8C !important;
+}
+
+.bg-red-500\/10 {
+  background-color: rgba(192, 138, 140, 0.1) !important;
+}
+
+/* Glassmorphism panel styles */
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(242, 233, 219, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Cyber glow effect */
+.cyber-glow-purple {
+  box-shadow: 0 0 15px -3px rgba(100, 51, 53, 0.3);
+}
+
+.cyber-glow-cyan {
+  box-shadow: 0 0 15px -3px rgba(242, 233, 219, 0.1);
+}
+
+/* Text clipping for gradient text */
+.text-gradient-purple-cyan {
+  @apply bg-gradient-to-r from-primary-400 to-cyber-cyan bg-clip-text text-transparent;
+}
+
+/* Voice assistant wave simulation */
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.wave-bar {
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.wave-bar:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.wave-bar:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.wave-bar:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.wave-bar:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+/* Root sizing resets */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-inline: none !important;
+  min-height: 100vh !important;
+  text-align: left !important;
+  display: block !important;
+}
+
+/* Loader micro animations */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+}
+
+.cyber-loader {
+  animation: pulse-ring 2s infinite ease-in-out;
+}
+
+/* ---------------------------------------------------- */
+/* Global overrides for light/dark dashboard layouts    */
+/* ---------------------------------------------------- */
+
+/* Override white cards to dark warm slate bg with linen text */
+.bg-white {
+  background-color: #15202b !important;
+  color: #F2E9DB !important;
+}
+
+/* Force dark internal card themes and stats panels */
+.dark\:bg-slate-900:is(.dark *),
+.dark\:bg-slate-950:is(.dark *),
+.dark\:bg-slate-950\/60:is(.dark *),
+.bg-slate-50,
+.bg-slate-100 {
+  background-color: #15202b !important;
+  color: #F2E9DB !important;
+}
+
+/* Page wrapper backgrounds should be deep charcoal-navy */
+.min-h-screen,
+.bg-black,
+.bg-\[\#0B0D12\],
+.bg-\[\#050816\],
+.via-\[\#050816\],
+.to-\[\#0a0f2c\] {
+  background-color: #101820 !important;
+}
+
+/* Override background gradient hex colors globally */
+.via-\[\#050816\] {
+  --tw-gradient-via: #101820 !important;
+}
+
+.to-\[\#0a0f2c\] {
+  --tw-gradient-to: #15202b !important;
+}
+
+.bg-\[\#050816\] {
+  background-color: #101820 !important;
+}
+
+/* Borders should be warm ivory lines */
+.border-slate-200\/60,
+.border-slate-200,
+.border-slate-100,
+.dark\:border-slate-800:is(.dark *),
+.dark\:border-slate-850:is(.dark *) {
+  border-color: rgba(242, 233, 219, 0.08) !important;
+}
+
+/* Headings text color override */
+.text-slate-800,
+.text-slate-900,
+.text-slate-850,
+.text-slate-700,
+.dark\:text-slate-100:is(.dark *),
+.dark\:text-slate-150:is(.dark *),
+.dark\:text-slate-200:is(.dark *) {
+  color: #F2E9DB !important;
+}
+
+/* Subtext/muted text override */
+.text-slate-500,
+.text-slate-400,
+.text-slate-450,
+.dark\:text-slate-400:is(.dark *),
+.dark\:text-slate-505:is(.dark *),
+.dark\:text-slate-500:is(.dark *) {
+  color: #A59C94 !important;
+}
+
+/* Sidebar active indicators and avatar gradients override */
+.bg-gradient-to-r.from-cyan-500.to-blue-600,
+.bg-gradient-to-r.from-cyan-400.to-blue-600,
+.from-cyan-500,
+.from-cyan-400 {
+  background: linear-gradient(135deg, #643335 0%, #a59c94 100%) !important;
+  --tw-gradient-from: #643335 !important;
+  --tw-gradient-to: #a59c94 !important;
+  color: #F2E9DB !important;
+}
+
+/* Text color overrides */
+.text-cyan-300,
+.text-cyan-400,
+.text-primary-500 {
+  color: #CBC4BC !important;
+}
+
+/* Stars and floating element overrides */
+.bg-gradient-to-br.from-blue-400.to-purple-600,
+.bg-gradient-to-br.from-pink-500.to-red-500 {
+  background: linear-gradient(135deg, #643335 0%, #15202b 100%) !important;
+  box-shadow: 0 0 40px rgba(100, 51, 53, 0.3) !important;
+}
+
+.bg-blue-500\/20,
+.bg-purple-500\/20,
+.bg-blue-500\/10,
+.bg-purple-500\/10,
+.bg-cyan-500\/20,
+.bg-cyan-500\/10 {
+  background-color: rgba(100, 51, 53, 0.1) !important;
+}
